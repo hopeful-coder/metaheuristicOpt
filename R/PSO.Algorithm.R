@@ -167,54 +167,54 @@ PSO <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 # @param velocity velocity for particles
 
 engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci, cg, w, Gbest, Lbest, particles, velocity){
-	FLbest <- calcFitness(FUN, optimType, Lbest)
-	FGbest <- optimType*FUN(Gbest)
-	curve <- c()
-	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-	for (t in 1:maxIter){
-		for (i in 1:nrow(particles)){
-			for (d in 1:ncol(particles)){
-				# pick random rumber
-				ri <- runif(1)
-				rg <- runif(1)
-
-				# update the particle velocity
-				newV <- w * velocity[i,d] + ci*ri*(Lbest[i,d]-particles[i,d]) + cg*rg*(Gbest[d]-particles[i,d])
-
-				# check range velocity
-				if(newV < -Vmax) newV <- -Vmax
-				if(newV > Vmax) newV <- Vmax
-				velocity[i,d] <- newV
-
-				newPos <- particles[i,d] + velocity[i,d]
-				# check range search space
-				if(length(lowerBound)==1){
-					if(newPos < lowerBound) newPos <- lowerBound
-					if(newPos > upperBound) newPos <- upperBound
-				}else{
-					if(newPos < lowerBound[d]) newPos <- lowerBound[d]
-					if(newPos > upperBound[d]) newPos <- upperBound[d]
-				}
-				particles[i,d] <- newPos
-
-				# check Local best and Global best
-				F <- optimType*FUN(particles[i,])
-				if(F < FLbest[i]){
-					Lbest[i,] <- particles[i,]
-					FLbest[i] <- F
-					if(FLbest[i] < FGbest){
-						Gbest <- Lbest[i,]
-						FGbest <- FLbest[i]
-					}
-				}
-			}
-		}
-		curve[t] <- FGbest
-		setTxtProgressBar(progressbar, t)
-	}
-	close(progressbar)
-	curve <- curve*optimType
-	## plot(c(1:maxIter), curve, type="l", main="PSO", log="y", xlab="Number Iteration", ylab = "Best Fittness",
-		                  ## ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
-	return(Gbest)
+	# FLbest <- calcFitness(FUN, optimType, Lbest)
+	# FGbest <- optimType*FUN(Gbest)
+	# curve <- c()
+	# progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
+	# for (t in 1:maxIter){
+	# 	for (i in 1:nrow(particles)){
+	# 		for (d in 1:ncol(particles)){
+	# 			# pick random rumber
+	# 			ri <- runif(1)
+	# 			rg <- runif(1)
+	# 
+	# 			# update the particle velocity
+	# 			newV <- w * velocity[i,d] + ci*ri*(Lbest[i,d]-particles[i,d]) + cg*rg*(Gbest[d]-particles[i,d])
+	# 
+	# 			# check range velocity
+	# 			if(newV < -Vmax) newV <- -Vmax
+	# 			if(newV > Vmax) newV <- Vmax
+	# 			velocity[i,d] <- newV
+	# 
+	# 			newPos <- particles[i,d] + velocity[i,d]
+	# 			# check range search space
+	# 			if(length(lowerBound)==1){
+	# 				if(newPos < lowerBound) newPos <- lowerBound
+	# 				if(newPos > upperBound) newPos <- upperBound
+	# 			}else{
+	# 				if(newPos < lowerBound[d]) newPos <- lowerBound[d]
+	# 				if(newPos > upperBound[d]) newPos <- upperBound[d]
+	# 			}
+	# 			particles[i,d] <- newPos
+	# 
+	# 			# check Local best and Global best
+	# 			F <- optimType*FUN(particles[i,])
+	# 			if(F < FLbest[i]){
+	# 				Lbest[i,] <- particles[i,]
+	# 				FLbest[i] <- F
+	# 				if(FLbest[i] < FGbest){
+	# 					Gbest <- Lbest[i,]
+	# 					FGbest <- FLbest[i]
+	# 				}
+	# 			}
+	# 		}
+	# 	}
+	# 	curve[t] <- FGbest
+	# 	setTxtProgressBar(progressbar, t)
+	# }
+	# close(progressbar)
+	# curve <- curve*optimType
+	# ## plot(c(1:maxIter), curve, type="l", main="PSO", log="y", xlab="Number Iteration", ylab = "Best Fittness",
+	# 	                  ## ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
+	return('hello world')
 }
