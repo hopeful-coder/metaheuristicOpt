@@ -123,7 +123,9 @@ GOA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 # @param grasshopper a matrix of grasshopper
 
 engineGOA <- function(FUN, optimType, maxIter, lowerBound, upperBound, grasshopper){
-	state <- 0
+  #Entry point for initialization
+  aaa = c(10^(1:50))
+  state <- 0
 	dimension <- ncol(grasshopper)
 	mlb <- mean(lowerBound)
 	mub <- mean(upperBound)
@@ -215,7 +217,17 @@ engineGOA <- function(FUN, optimType, maxIter, lowerBound, upperBound, grasshopp
 
 		# save the best fitness for iteration t
 		curve[t] <- FbestPos
-
+		#Entry point for Mitchell
+		for(xxx in 1:(length(aaa)-1)){
+		  aaa[xxx] = aaa[xxx+1]
+		}
+		aaa[length(aaa)] = FbestPos
+		if(all(abs(diff(aaa))<= 5) == T){
+		  print(FbestPos)
+		  print(t)
+		  t = maxIter
+		  break
+		}
 		setTxtProgressBar(progressbar, t)
 	}
 

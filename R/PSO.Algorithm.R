@@ -218,7 +218,8 @@ engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci
 	  }
 	  aaa[length(aaa)] = FGbest
 	  if(all(abs(diff(aaa))<= 5) == T){
-	    cat(aaa)
+	    print(FGbest)
+	    print(t)
 	    t = maxIter
 	    break
 	  }

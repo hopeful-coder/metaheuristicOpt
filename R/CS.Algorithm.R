@@ -143,6 +143,9 @@ CS <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, rang
 }
 
 engineCS <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidateSolution, abandonedFraction){
+  #Start point for mitchell
+  #Entry point for initialization
+  aaa = c(10^(1:50))
   numPopulation <- nrow(candidateSolution)
   numVar <- ncol(candidateSolution)
   best <- c()

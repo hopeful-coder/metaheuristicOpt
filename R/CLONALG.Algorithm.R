@@ -157,6 +157,9 @@ CLONALG <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500,
 engineCLONALG <- function(FUN, optimType, maxIter, rangeVar, lowerBound, upperBound,
                           selectionSize, multipicationFactor, hypermutationRate,
                           candidateSolution){
+  #Start point for mitchell
+  #Entry point for initialization
+  aaa = c(10^(1:50))
   numVar <- ncol(candidateSolution)
   numPopulation <- nrow(candidateSolution)
   # evaluate candidate solution

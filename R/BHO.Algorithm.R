@@ -131,6 +131,9 @@ BHO <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 }
 
 engineBHO <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidateSolution){
+  #Start point for mitchell
+  #Entry point for initialization
+  aaa = c(10^(1:50))
   numVar <- ncol(candidateSolution)
   numPopulation <- nrow(candidateSolution)
 

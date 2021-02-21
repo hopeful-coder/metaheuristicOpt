@@ -151,6 +151,9 @@ BA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, rang
 
 engineBA <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidateSolution,
                      maxFrequency, minFrequency, gama, alpha){
+  #Start point for mitchell
+  #Entry point for initialization
+  aaa = c(10^(1:50))
   numVar <- ncol(candidateSolution)
   numPopulation <- nrow(candidateSolution)
 

@@ -131,7 +131,9 @@ SCA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 # @param candidate population of candidate
 
 engine.SCA <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidate){
-	# calculate the candidate fitness
+  #Entry point for initialization
+  aaa = c(10^(1:50))
+  # calculate the candidate fitness
 	candidateFitness <- calcFitness(FUN, optimType, candidate)
 
 	# sort candidate location based on fitness value
@@ -183,7 +185,17 @@ engine.SCA <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidat
 
 		# save the best fitness for iteration t
 		curve[t] <- FbestPos
-
+		#Entry point for Mitchell
+		for(xxx in 1:(length(aaa)-1)){
+		  aaa[xxx] = aaa[xxx+1]
+		}
+		aaa[length(aaa)] = FbestPos
+		if(all(abs(diff(aaa))<= 5) == T){
+		  print(FbestPos)
+		  print(t)
+		  t = maxIter
+		  break
+		}
 		setTxtProgressBar(progressbar, t)
 	}
 

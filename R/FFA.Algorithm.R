@@ -146,7 +146,9 @@ FFA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 # @param firefly population of candidate solution
 
 engineFFA <- function(FUN, optimType, maxIter, lowerBound, upperBound, B0, gamma, alpha, fireflies){
-	curve <- c()
+  #Entry point for initialization
+  aaa = c(10^(1:50))
+  curve <- c()
 	# calculate the fitness and sort
 	Light <- calcFitness(FUN, optimType, fireflies)
 	## save the index order
@@ -191,7 +193,17 @@ engineFFA <- function(FUN, optimType, maxIter, lowerBound, upperBound, B0, gamma
 		Best <- fireflies[bestIndex,]
 		# save best fitness for plot
 		curve[t] <- Light[bestIndex]
-
+		#Entry point for Mitchell
+		for(xxx in 1:(length(aaa)-1)){
+		  aaa[xxx] = aaa[xxx+1]
+		}
+		aaa[length(aaa)] = Light[bestIndex]
+		if(all(abs(diff(aaa))<= 5) == T){
+		  print(Light[bestIndex])
+		  print(t)
+		  t = maxIter
+		  break
+		}
 		# next progress bar
 		setTxtProgressBar(progressbar, t)
 	}

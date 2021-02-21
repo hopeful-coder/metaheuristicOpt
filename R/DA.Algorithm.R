@@ -144,7 +144,9 @@ DA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, rang
 engineDA <- function(FUN, optimType, maxIter, lowerBound, upperBound, dragonfly){
 	# check length lb and ub
 	# if user only define one lb and ub, then repeat it until the dimension
-	if(length(lowerBound)==1 & length(upperBound)==1){
+  #Entry point for initialization
+  aaa = c(10^(1:50))
+  if(length(lowerBound)==1 & length(upperBound)==1){
 		lowerBound <- rep(lowerBound,ncol(dragonfly))
 		upperBound <- rep(upperBound,ncol(dragonfly))
 	}
@@ -310,7 +312,17 @@ engineDA <- function(FUN, optimType, maxIter, lowerBound, upperBound, dragonfly)
 
 		# save the best fitness for iteration t
 		curve[t] <- Ffood
-
+		#Entry point for Mitchell
+		for(xxx in 1:(length(aaa)-1)){
+		  aaa[xxx] = aaa[xxx+1]
+		}
+		aaa[length(aaa)] = Ffood
+		if(all(abs(diff(aaa))<= 5) == T){
+		  print(Ffood)
+		  print(t)
+		  t = maxIter
+		  break
+		}
 		setTxtProgressBar(progressbar, t)
 	}
 

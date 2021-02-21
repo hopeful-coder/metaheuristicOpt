@@ -132,7 +132,9 @@ GWO <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 # @param wolf population of wolf
 
 engineGWO <- function(FUN, optimType, maxIter, lowerBound, upperBound, wolf){
-	# calculate the wolf fitness
+  #Entry point for initialization
+  aaa = c(10^(1:50))
+  # calculate the wolf fitness
 	wolfFitness <- calcFitness(FUN, optimType, wolf)
 
 	# sort wolf location based on fitness value
@@ -215,7 +217,17 @@ engineGWO <- function(FUN, optimType, maxIter, lowerBound, upperBound, wolf){
 
 		# save the best fitness for iteration t
 		curve[t] <- Falpha
-
+		#Entry point for Mitchell
+		for(xxx in 1:(length(aaa)-1)){
+		  aaa[xxx] = aaa[xxx+1]
+		}
+		aaa[length(aaa)] = Falpha
+		if(all(abs(diff(aaa))<= 5) == T){
+		  print(Falpha)
+		  print(t)
+		  t = maxIter
+		  break
+		}
 		setTxtProgressBar(progressbar, t)
 	}
 

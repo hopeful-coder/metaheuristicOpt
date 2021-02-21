@@ -130,7 +130,9 @@ WOA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 # @param whale population of whale
 
 engineWOA <- function(FUN, optimType, maxIter, lowerBound, upperBound, whale){
-	# calculate the whale fitness
+  #Entry point for initialization
+  aaa = c(10^(1:50))
+  # calculate the whale fitness
 	whaleFitness <- calcFitness(FUN, optimType, whale)
 
 	# sort whale location based on fitness value
@@ -207,7 +209,17 @@ engineWOA <- function(FUN, optimType, maxIter, lowerBound, upperBound, whale){
 
 		# save the best fitness for iteration t
 		curve[t] <- FbestPos
-
+		#Entry point for Mitchell
+		for(xxx in 1:(length(aaa)-1)){
+		  aaa[xxx] = aaa[xxx+1]
+		}
+		aaa[length(aaa)] = FbestPos
+		if(all(abs(diff(aaa))<= 5) == T){
+		  print(FbestPos)
+		  print(t)
+		  t = maxIter
+		  break
+		}
 		setTxtProgressBar(progressbar, t)
 	}
 

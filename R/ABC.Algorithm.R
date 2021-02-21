@@ -143,6 +143,9 @@ ABC <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 }
 
 engineABC <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidateSolution, cycleLimit){
+  #Start point for mitchell
+  #Entry point for initialization
+  aaa = c(10^(1:50))
   numVar <- ncol(candidateSolution)
   numPopulation <- nrow(candidateSolution)
   limit <- rep(cycleLimit, numPopulation)
