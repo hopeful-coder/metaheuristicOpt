@@ -221,7 +221,7 @@ engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci
 	    print(FGbest)
 	    print(t)
 	    t = maxIter
-	    break
+	    # break
 	  }
 		curve[t] <- FGbest
 		setTxtProgressBar(progressbar, t)
