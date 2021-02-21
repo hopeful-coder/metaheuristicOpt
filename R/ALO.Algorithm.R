@@ -153,7 +153,10 @@ engine.ALO <- function(FUN, optimType, maxIter, lowerBound, upperBound, antlion,
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
 
-	for (t in 1:maxIter){
+	# for (t in 1:maxIter){
+	t = 1
+	while(t < maxIter){
+	  t = t + 1
 		for (i in 1:nrow(ant)){
 			# select an antlion by roulette whell selection
 			roulette.index <- rouletteWhell(1/antlionFitness)

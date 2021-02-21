@@ -177,7 +177,10 @@ engineDA <- function(FUN, optimType, maxIter, lowerBound, upperBound, dragonfly)
 
 	# code is translated from MATLAB version
 	# you can found the original
-	for (t in 1:maxIter){
+	# for (t in 1:maxIter){
+	t = 1
+	while(t < maxIter){
+	  t = t + 1
 		# define neighbour distance
 		# increasing for each iteration
 		r <- (upperBound-lowerBound)/4+((upperBound-lowerBound)*(t/maxIter)*2)

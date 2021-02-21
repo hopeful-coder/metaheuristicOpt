@@ -148,8 +148,10 @@ engine.SCA <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidat
 	# curve to plot
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-
-	for (t in 1:maxIter){
+  t = 1
+	# for (t in 1:maxIter){
+	while(t < maxIter){
+	  t = t + 1
 		# value a in eq (3.4)
 		a <- 2
 

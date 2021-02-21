@@ -170,13 +170,13 @@ engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci
 	#Start point for mitchell
   #Entry point for initialization
   aaa = c(10^(1:50))
-  t = 1
   FLbest <- calcFitness(FUN, optimType, Lbest)
 	FGbest <- optimType*FUN(Gbest)
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
 	# for (t in 1:maxIter){
-  while(t < maxIter){
+	t = 1
+	while(t < maxIter){
     t = t + 1
 			for (i in 1:nrow(particles)){
 			for (d in 1:ncol(particles)){

@@ -162,8 +162,10 @@ engineGA <- function(FUN, optimType, maxIter, lowerBound, upperBound, Pm, Pc, ca
 	# curve to plot
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-
-	for (t in 1:maxIter){
+  t = 1
+	# for (t in 1:maxIter){
+	while(t < maxIter){
+	  t = t + 1
 		# do selection to determine candidate to do crossover phase
 		numSelect <- Pc * nrow(candidate)
 		# even numSelect

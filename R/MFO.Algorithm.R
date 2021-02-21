@@ -151,8 +151,10 @@ engineMFO <- function(FUN, optimType, maxIter, lowerBound, upperBound, moth){
 	# curve to plot
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-
-	for (t in 1:maxIter){
+  t = 1
+	# for (t in 1:maxIter){
+	while(t < maxIter){
+	  t = t + 1
 		# number of flames
 		flame_no <- round(nrow(moth)-t*((nrow(moth)-1)/maxIter))
 

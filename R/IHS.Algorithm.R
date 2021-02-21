@@ -165,8 +165,10 @@ engineHS <- function(FUN, optimType, maxIter, lowerBound, upperBound, PAR, HMCR,
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
 
-
-	for (t in 1:maxIter){
+  t = 1
+	# for (t in 1:maxIter){
+	while(t < maxIter){
+	  t = t + 1
 		# number of new harmonies = number population
 		newHarmonies <- matrix(ncol=ncol(harmonyMemory), nrow=nrow(harmonyMemory))
 

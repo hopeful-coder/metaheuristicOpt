@@ -162,7 +162,10 @@ engineFFA <- function(FUN, optimType, maxIter, lowerBound, upperBound, B0, gamma
 	Best <- fireflies[1,]
 
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-	for (t in 1:maxIter){
+	# for (t in 1:maxIter){
+	t = 1
+	while(t < maxIter){
+	  t = t + 1
 		for (i in 1:nrow(fireflies)) {
 			for (j in 1:nrow(fireflies)) {
 				if (Light[j] < Light[i]){

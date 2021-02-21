@@ -167,7 +167,10 @@ engineCLONALG <- function(FUN, optimType, maxIter, rangeVar, lowerBound, upperBo
   candidateSolutions <- data.frame(candidateSolution, fitness)
 
   progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-  for(t in 1:maxIter){
+  t = 1
+  # for (t in 1:maxIter){
+  while(t < maxIter){
+    t = t + 1
     # Select top "selectionSize" with best fitness from candidateSolutions as topSelections
     candidateSolutions <- candidateSolutions[order(candidateSolutions$fitness), ]
     topSelections <- data.matrix(candidateSolutions[1:selectionSize, 1:numVar])
