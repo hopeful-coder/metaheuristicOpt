@@ -174,8 +174,9 @@ engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci
 	FGbest <- optimType*FUN(Gbest)
 	curve <- c()
 	progressbar <- txtProgressBar(min = 0, max = maxIter, style = 3)
-	for (t in 1:maxIter){
-		for (i in 1:nrow(particles)){
+	# for (t in 1:maxIter){
+  while(t < maxIter){
+			for (i in 1:nrow(particles)){
 			for (d in 1:ncol(particles)){
 				# pick random rumber
 				ri <- runif(1)
