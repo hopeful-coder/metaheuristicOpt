@@ -129,9 +129,10 @@ GA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, rang
 	candidate <- generateRandom(numPopulation, dimension, lowerBound, upperBound)
 
 	# find the best position
-	bestPos <- engineGA(FUN, optimType, maxIter, lowerBound, upperBound, Pm, Pc, candidate)
-
-	return(bestPos)
+	answerMitch <- engineGA(FUN, optimType, maxIter, lowerBound, upperBound, Pm, Pc, candidate)
+  bestPos = answerMitch[[1]]
+  stopIter = answerMitch[[2]]
+	return(list(bestPos, stopIter))
 }
 
 ## support function for calculating best position with HS algorithm
@@ -235,6 +236,7 @@ engineGA <- function(FUN, optimType, maxIter, lowerBound, upperBound, Pm, Pc, ca
 		if(all(abs(diff(aaa))<= 5) == T){
 		  print(FbestPos)
 		  print(t)
+		  old_iter = t
 		  t = maxIter
 		  break
 		}
@@ -245,5 +247,5 @@ engineGA <- function(FUN, optimType, maxIter, lowerBound, upperBound, Pm, Pc, ca
 	curve <- curve*optimType
 	# plot(c(1:maxIter), curve, type="l", main="GA", log="y", xlab="Number Iteration", ylab = "Best Fittness",
 		                  # ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
-	return(bestPos)
+	return(list(bestPos, old_iter))
 }

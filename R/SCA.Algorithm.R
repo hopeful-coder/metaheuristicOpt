@@ -117,9 +117,10 @@ SCA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 	candidate <- generateRandom(numPopulation, dimension, lowerBound, upperBound)
 
 	# find the best position
-	bestPos <- engine.SCA(FUN, optimType, maxIter, lowerBound, upperBound, candidate)
-
-	return(bestPos)
+	answerMitch <- engine.SCA(FUN, optimType, maxIter, lowerBound, upperBound, candidate)
+  bestPos = answerMitch[[1]]
+  stopIter = answerMitch[[2]]
+	return(list(bestPos, stopIter))
 }
 
 ## support function for calculating best position with SCA algorithm
@@ -195,6 +196,7 @@ engine.SCA <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidat
 		if(all(abs(diff(aaa))<= 5) == T){
 		  print(FbestPos)
 		  print(t)
+		  old_iter = t
 		  t = maxIter
 		  break
 		}
@@ -205,5 +207,5 @@ engine.SCA <- function(FUN, optimType, maxIter, lowerBound, upperBound, candidat
 	curve <- curve*optimType
 	# plot(c(1:maxIter), curve, type="l", main="SCA", log="y", xlab="Number Iteration", ylab = "Best Fittness",
 		                  # ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
-	return(bestPos)
+	return(list(bestPos, old_iter))
 }

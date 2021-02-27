@@ -147,8 +147,9 @@ PSO <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 
 	# find the best particle position
 	bestParticle <- engine.PSO(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci, cg, w, Gbest, Lbest, particles, velocity)
-
-	return(bestParticle)
+  bestParticle = answerMitch[[1]]
+  stopIter     = answerMitch[[2]]
+	return(list(bestParticle, stopIter))
 }
 
 ## support function for calculating best position with PSO algorithm
@@ -223,6 +224,7 @@ engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci
 	  if(all(abs(diff(aaa))<= 5) == T){
 	    print(FGbest)
 	    print(t)
+	    old_iter = t
 	    t = maxIter
 	    # break
 	  }
@@ -233,5 +235,5 @@ engine.PSO <- function(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci
 	curve <- curve*optimType
 	# plot(c(1:maxIter), curve, type="l", main="PSO", log="y", xlab="Number Iteration", ylab = "Best Fittness",
 		                  ## ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
-	return(Gbest)
+	return(list(Gbest, old_iter))
 }

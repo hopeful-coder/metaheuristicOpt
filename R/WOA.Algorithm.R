@@ -116,9 +116,10 @@ WOA <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 	whale <- generateRandom(numPopulation, dimension, lowerBound, upperBound)
 
 	# find the best position
-	bestPos <- engineWOA(FUN, optimType, maxIter, lowerBound, upperBound, whale)
-
-	return(bestPos)
+	answerMitch <- engineWOA(FUN, optimType, maxIter, lowerBound, upperBound, whale)
+  bestPos = answerMitch[[1]]
+  stopIter = answerMitch[[2]]
+	return(list(bestPos, stopIter))
 }
 
 ## support function for calculating best position with SCA algorithm
@@ -219,6 +220,7 @@ engineWOA <- function(FUN, optimType, maxIter, lowerBound, upperBound, whale){
 		if(all(abs(diff(aaa))<= 5) == T){
 		  print(FbestPos)
 		  print(t)
+		  old_iter = t
 		  t = maxIter
 		  break
 		}
@@ -229,5 +231,5 @@ engineWOA <- function(FUN, optimType, maxIter, lowerBound, upperBound, whale){
 	curve <- curve*optimType
 	# plot(c(1:maxIter), curve, type="l", main="WOA", log="y", xlab="Number Iteration", ylab = "Best Fittness",
 		                  # ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
-	return(bestPos)
+	return(list(bestPos, old_iter))
 }

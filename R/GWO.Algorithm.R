@@ -118,9 +118,10 @@ GWO <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 	wolf <- generateRandom(numPopulation, dimension, lowerBound, upperBound)
 
 	# find the best position
-	bestPos <- engineGWO(FUN, optimType, maxIter, lowerBound, upperBound, wolf)
-
-	return(bestPos)
+	answerMitch <- engineGWO(FUN, optimType, maxIter, lowerBound, upperBound, wolf)
+  bestPos = answerMitch[[1]]
+  stopIter = answerMitch[[2]]
+	return(list(bestPos, stopIter))
 }
 
 ## support function for calculating best position with GWO algorithm
@@ -228,8 +229,8 @@ engineGWO <- function(FUN, optimType, maxIter, lowerBound, upperBound, wolf){
 		if(all(abs(diff(aaa))<= 5) == T){
 		  print(Falpha)
 		  print(t)
+		  old_iter = t
 		  t = maxIter
-		  break
 		}
 		setTxtProgressBar(progressbar, t)
 	}
@@ -238,5 +239,5 @@ engineGWO <- function(FUN, optimType, maxIter, lowerBound, upperBound, wolf){
 	curve <- curve*optimType
 	# plot(c(1:maxIter), curve, type="l", main="GWO", log="y", xlab="Number Iteration", ylab = "Best Fittness",
 		                  # ylim=c(curve[which.min(curve)],curve[which.max(curve)]))
-	return(alpha)
+	return(list(alpha, old_iter))
 }

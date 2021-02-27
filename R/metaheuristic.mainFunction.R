@@ -344,7 +344,8 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 
 	## initialize result
 	result <- matrix(ncol=numVar, nrow=length(algorithm))
-
+	## initialize Mitchell iter
+	iterMitch <- matrix(ncol=1, nrow=length(algorithm))
 	## initialize time elapsed
 	timeElapsed <- matrix(ncol=3, nrow=length(algorithm))
 
@@ -373,8 +374,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- PSO(FUN, optimType, numVar, numPopulation, maxIter, rangeVar, Vmax, ci, cg, w)
+				ansMitch2 <- PSO(FUN, optimType, numVar, numPopulation, maxIter, rangeVar, Vmax, ci, cg, w)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
@@ -407,8 +410,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- GWO(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
+				ansMitch2 <- GWO(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
@@ -424,8 +429,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- DA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
+				ansMitch2 <- DA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
@@ -463,8 +470,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- GA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar, Pm, Pc)
+				ansMitch2 <- GA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar, Pm, Pc)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
@@ -514,8 +523,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- MFO(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
+				ansMitch2 <- MFO(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
@@ -531,8 +542,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- SCA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
+				ansMitch2 <- SCA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
@@ -547,8 +560,10 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 			# generate result while calculating time elapsed
 			set.seed(seed)
 			temp<-system.time(
-				result[i,] <- WOA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
+				ansMitch2 <- WOA(FUN, optimType, numVar, numPopulation, maxIter, rangeVar)
 			)
+			result[i,] = ansMitch2[[1]]
+			iterMitch[i,] = ansMitch2[[2]]
 			temp <- c(temp[1], temp[2], temp[3])
 			timeElapsed[i,]=temp;
 		}
