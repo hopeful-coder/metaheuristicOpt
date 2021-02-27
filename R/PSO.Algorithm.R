@@ -146,7 +146,7 @@ PSO <- function(FUN, optimType="MIN", numVar, numPopulation=40, maxIter=500, ran
 	velocity <- generateRandom(numPopulation, dimension, -Vmax, Vmax)
 
 	# find the best particle position
-	bestParticle <- engine.PSO(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci, cg, w, Gbest, Lbest, particles, velocity)
+	answerMitch <- engine.PSO(FUN, optimType, maxIter, lowerBound, upperBound, Vmax, ci, cg, w, Gbest, Lbest, particles, velocity)
   bestParticle = answerMitch[[1]]
   stopIter     = answerMitch[[2]]
 	return(list(bestParticle, stopIter))

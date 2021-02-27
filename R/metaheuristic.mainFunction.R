@@ -743,7 +743,7 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 	rownames(result) <- algorithm
 	rownames(optimumValue) <- algorithm
 	rownames(timeElapsed) <- algorithm
-
+  rownames(iterMitch)   <- algorithm
 	#set name for column
 	colName <- c()
 	for (i in 1:numVar) {
@@ -754,7 +754,7 @@ metaOpt <- function(FUN, optimType="MIN", algorithm="PSO", numVar, rangeVar, con
 	colnames(timeElapsed) <- c("user", "system", "elapsed")
 
 	# build list
-	allResult <- list(result=result, optimumValue=optimumValue, timeElapsed=timeElapsed)
+	allResult <- list(result=result, optimumValue=optimumValue, timeElapsed=timeElapsed, stopIter = iterMitch)
 
 	return(allResult)
 }
